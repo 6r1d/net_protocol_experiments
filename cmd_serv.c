@@ -5,12 +5,14 @@
 
 #include "dyad.h"
 
-clock_t start_time;
+time_t * start_time, current_time;
+double interval;
 
 static void onData(dyad_Event *e) {
   if (strcmp(e->data, "uptime") == 1) {
-    double time_spent = (double)(clock() - start_time);
-    dyad_writef(e->stream, "%f", time_spent);
+    time(&current_time);
+    interval = difftime(current_time, start_time);
+    dyad_writef(e->stream, "%f\n\r", interval);
   } else {
     dyad_write(e->stream, e->data, e->size);
   }
@@ -27,7 +29,7 @@ static void onError(dyad_Event *e) {
 
 int main(void) {
   /* Used in uptime */
-  start_time = clock();
+  time(&start_time);
 
   /* Init dyad */
   dyad_Stream *s;

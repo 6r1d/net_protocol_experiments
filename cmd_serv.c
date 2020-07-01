@@ -1,18 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
-
 #include "dyad.h"
-
-time_t start_time, current_time;
-
-// Returns program uptime in seconds as a double value
-int get_uptime() {
-    current_time = time(NULL);
-    double interval = difftime(current_time, start_time);
-    return (int)interval;
-}
+#include "uptime.c"
 
 static void onData(dyad_Event *e) {
   if (strcmp(e->data, "uptime") == 1) {
@@ -32,8 +22,7 @@ static void onError(dyad_Event *e) {
 }
 
 int main(void) {
-  /* Used in uptime */
-  start_time = time(NULL);
+  set_uptime_start();
 
   /* Init dyad */
   dyad_Stream *s;

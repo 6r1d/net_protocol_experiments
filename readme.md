@@ -30,5 +30,3 @@ those are correct.
 
     > uptime
       < n.n seconds
-    > ip
-      < ip address

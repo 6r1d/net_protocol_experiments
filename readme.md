@@ -26,7 +26,20 @@ those are correct.
     > remove [label]
       < [status]
 
-## Other commands to make
+## Other commands
 
     > uptime
       < n.n seconds
+
+## Articles to read
+
+Since I'm using UDP, I need to guarantee a reliable data transmission.
+
+ * There's a Stack Overflow [thread](https://stackoverflow.com/questions/43390361/) about that.
+ * There's also a Wikipedia [article](https://en.wikipedia.org/wiki/UDP-based_Data_Transfer_Protocol) about the related protocol.
+
+### Network protocol examples
+
+ * LibDill network protocol [tutorial](http://libdill.org/tutorial-protocol.html) contains some parsing and handshake ideas.
+ * An [article](https://www.saminiir.com/lets-code-tcp-ip-stack-4-tcp-data-flow-socket-api/) about TCP stack.
+ * Linux userspace TCP/IP stack: [level-ip](https://github.com/saminiir/level-ip).

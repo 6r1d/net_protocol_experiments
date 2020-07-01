@@ -5,18 +5,18 @@
 
 #include "dyad.h"
 
-time_t * start_time, current_time;
+time_t start_time, current_time;
 
-/* Returns program uptime in seconds as a double value */
-double get_uptime() {
-    time(&current_time);
+// Returns program uptime in seconds as a double value
+int get_uptime() {
+    current_time = time(NULL);
     double interval = difftime(current_time, start_time);
-    return interval;
+    return (int)interval;
 }
 
 static void onData(dyad_Event *e) {
   if (strcmp(e->data, "uptime") == 1) {
-    dyad_writef(e->stream, "%f\n\r", get_uptime());
+    dyad_writef(e->stream, "%d\n\r", get_uptime());
   } else {
     dyad_write(e->stream, e->data, e->size);
   }
@@ -33,7 +33,7 @@ static void onError(dyad_Event *e) {
 
 int main(void) {
   /* Used in uptime */
-  time(&start_time);
+  start_time = time(NULL);
 
   /* Init dyad */
   dyad_Stream *s;
